@@ -10,6 +10,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:photo_manager_image_provider/photo_manager_image_provider.dart';
 import 'package:provider/provider.dart';
@@ -521,6 +522,7 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
                 textDelegate.accessAllTip,
                 style: context.textTheme.bodySmall?.copyWith(
                   fontSize: 14,
+                  color: const Color.fromRGBO(208, 213, 221, 1), //plaud
                 ),
                 semanticsLabel: semanticsTextDelegate.accessAllTip,
               ),
@@ -636,7 +638,7 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
     final Widget goToSettingsButton = MaterialButton(
       elevation: 0,
       minWidth: size.width / 2,
-      height: appBarItemHeight * 1.25,
+      // height: appBarItemHeight * 1.25,//plaud:删除限高
       padding: const EdgeInsets.symmetric(horizontal: 24),
       color: themeColor,
       shape: RoundedRectangleBorder(
@@ -646,7 +648,7 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       child: ScaleText(
         textDelegate.goToSystemSettings,
-        style: const TextStyle(fontSize: 17),
+        style: const TextStyle(fontSize: 17, color: Colors.black), //plaud
         semanticsLabel: semanticsTextDelegate.goToSystemSettings,
       ),
     );
@@ -1638,7 +1640,7 @@ class DefaultAssetPickerBuilderDelegate
           color: theme.colorScheme.secondary,
           disabledColor: theme.splashColor,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(3),
+            borderRadius: BorderRadius.circular(20), //plaud
           ),
           onPressed: shouldAllowConfirm
               ? () {
@@ -1652,9 +1654,8 @@ class DefaultAssetPickerBuilderDelegate
                     ' (${p.selectedAssets.length}/${p.maxAssets})'
                 : textDelegate.confirm,
             style: TextStyle(
-              color: shouldAllowConfirm
-                  ? theme.textTheme.bodyLarge?.color
-                  : theme.textTheme.bodySmall?.color,
+              //plaud 固定样式
+              color: Colors.black,
               fontSize: 17,
               fontWeight: FontWeight.normal,
             ),
@@ -2161,8 +2162,9 @@ class DefaultAssetPickerBuilderDelegate
             child: AnimatedSwitcher(
               duration: duration,
               reverseDuration: duration,
-              child:
-                  selected ? const Icon(Icons.check) : const SizedBox.shrink(),
+              child: selected
+                  ? const Icon(Icons.check, color: Colors.black) //plaud
+                  : const SizedBox.shrink(),
             ),
           ),
         );
