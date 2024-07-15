@@ -72,6 +72,8 @@ class PickMethod {
             maxAssets: maxAssetsCount,
             selectedAssets: assets,
             requestType: RequestType.video,
+            themeColor: Colors.white,
+            specialPickerType: SpecialPickerType.noPreview,
           ),
         );
       },
@@ -183,15 +185,12 @@ class PickMethod {
                     if (result == null) {
                       return;
                     }
-                    final AssetPicker<AssetEntity, AssetPathEntity> picker =
-                        context.findAncestorWidgetOfExactType()!;
-                    final DefaultAssetPickerBuilderDelegate builder =
-                        picker.builder as DefaultAssetPickerBuilderDelegate;
+                    final AssetPicker<AssetEntity, AssetPathEntity> picker = context.findAncestorWidgetOfExactType()!;
+                    final DefaultAssetPickerBuilderDelegate builder = picker.builder as DefaultAssetPickerBuilderDelegate;
                     final DefaultAssetPickerProvider p = builder.provider;
                     await p.switchPath(
                       PathWrapper<AssetPathEntity>(
-                        path:
-                            await p.currentPath!.path.obtainForNewProperties(),
+                        path: await p.currentPath!.path.obtainForNewProperties(),
                       ),
                     );
                     p.selectAsset(result);

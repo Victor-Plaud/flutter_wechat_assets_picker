@@ -152,8 +152,7 @@ class _VideoPageBuilderState extends State<VideoPageBuilder> {
       controller.pause();
       return;
     }
-    if (widget.delegate.isDisplayingDetail.value &&
-        !MediaQuery.accessibleNavigationOf(context)) {
+    if (widget.delegate.isDisplayingDetail.value && !MediaQuery.accessibleNavigationOf(context)) {
       widget.delegate.switchDisplayingDetail(value: false);
     }
     if (controller.value.duration == controller.value.position) {
@@ -203,9 +202,7 @@ class _VideoPageBuilderState extends State<VideoPageBuilder> {
                         shape: BoxShape.circle,
                       ),
                       child: Icon(
-                        value
-                            ? Icons.pause_circle_outline
-                            : Icons.play_circle_filled,
+                        value ? Icons.pause_circle_outline : Icons.play_circle_filled,
                         size: 70.0,
                         color: Colors.white,
                       ),
@@ -229,8 +226,7 @@ class _VideoPageBuilderState extends State<VideoPageBuilder> {
           return Center(
             child: ScaleText(
               Singleton.textDelegate.loadFailed,
-              semanticsLabel:
-                  Singleton.textDelegate.semanticsTextDelegate.loadFailed,
+              semanticsLabel: Singleton.textDelegate.semanticsTextDelegate.loadFailed,
             ),
           );
         }
@@ -244,8 +240,7 @@ class _VideoPageBuilderState extends State<VideoPageBuilder> {
           onLongPress: () {
             playButtonCallback(context);
           },
-          onLongPressHint:
-              Singleton.textDelegate.semanticsTextDelegate.sActionPlayHint,
+          onLongPressHint: Singleton.textDelegate.semanticsTextDelegate.sActionPlayHint,
           child: _contentBuilder(context),
         );
       },
