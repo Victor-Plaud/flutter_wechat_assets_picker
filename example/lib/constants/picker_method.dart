@@ -72,6 +72,8 @@ class PickMethod {
             maxAssets: maxAssetsCount,
             selectedAssets: assets,
             requestType: RequestType.video,
+            themeColor: Colors.white, // plaud
+            specialPickerType: SpecialPickerType.noPreview, // plaud
           ),
         );
       },
